@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Higher Lower Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.6">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
+
+    <script src="static/scripts.js"></script>
+
+
+</head>
+
+<body>
+<div id="loading-container" >
+     <div id="loading-text">Cargando...</div>
+   <img id="loading-rabbit" src="static/conejo_compra.png">
+
+</div>
+
+    <div class="game-container">
+        <div id="score-message">
+    <p>Bien! Has acertado!</p>
+    <img id="rabbit" src="static/conejo_normal.png">
+</div>
+         <h1>HigherLower Findit</h1>
+        <div id="scoreboard" style="position: absolute; top: 10px; right: 10px; font-size: 24px; color: #32CD32;">Score: 0</div>
+        <div id="product1" class="product">
+            <img id="image1">
+            <p id="name1"></p>
+            <p id="price1" style="font-size: 24px; color: #32CD32; text-shadow: 2px 2px 4px #000000;"></p>
+        </div>
+        <div id="product2" class="product">
+            <img id="image2">
+            <p id="name2"></p>
+        </div>
+        <div class="buttons">
+            <button id="higher" onclick="guessHigher()">Higher</button>
+            <button id="lower" onclick="guessLower()">Lower</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+
+
+</body>
+
+</html>
