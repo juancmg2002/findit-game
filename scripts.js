@@ -10,23 +10,24 @@ function hideLoadingContainer() {
     container.style.backgroundColor = 'rgba(103, 58, 183, 1)'; // Remove opacity
 }
 let product1, product2;
-function animateLoadingRabbit() {
-    const rabbit = document.getElementById('loading-rabbit');
-    rabbit.style.left = '-200px'; /* reset position to start */
-    setTimeout(() => rabbit.style.left = '100vw', 0); /* animate to the right side of the screen */
-}
+// function animateLoadingRabbit() {
+//     const rabbit = document.getElementById('loading-rabbit');
+//     rabbit.style.left = '-200px'; /* reset position to start */
+//     setTimeout(() => rabbit.style.left = '100vw', 0); /* animate to the right side of the screen */
+// }
 function fetchProduct(number) {
-    return fetch(http://172.20.10.12:8080/proxy?url=http://172.20.10.12:8080/pickRandomProduct?number=${number})
+    return fetch(`http://api.finditapp.es:5000/pickRandomProduct?number=${number}`)
         .then(response => response.json())
         .then(data => {
             console.log('API response:', data);
-           //Retorna 2 o 1 productos dependiendo de la respuesta
+            // Returns 2 or 1 product(s) depending on the response
             return data.map(productArray => productArray[0]);
         });
 }
 
+
 async function nextRound() {
- animateLoadingRabbit();
+//  animateLoadingRabbit();
     if (!product2) {
         // Fetch two random products
         const products = await fetchProduct(2);
@@ -101,3 +102,4 @@ function guessLower() {
 }
 
 nextRound();
+
