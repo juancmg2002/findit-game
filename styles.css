@@ -11,9 +11,12 @@
 } */
 
 body, html, .game-container {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+
     margin: 0;
     padding: 0;
     height: 100%;
+    background-color: #1A237E;
 }
 
 .half-screen {
@@ -21,6 +24,8 @@ body, html, .game-container {
     height: 50%;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* centers content vertically */
+    align-items: center; /* centers content horizontally */
 }
 
 .product-image-container {
@@ -34,10 +39,73 @@ body, html, .game-container {
     object-fit: contain;
 }
 
+.rounded-card {
+    background-color: white;
+    border-radius: 15px; /* adjust this value for more or less rounding */
+    width: 95%; /* adjust width as needed */
+    height: 90%; /* adjust height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* adjust padding as needed */
+    box-sizing: border-box; /* ensures padding doesn't affect total width/height */
+}
+.product-text {
+    width: 100%; /* makes text fill the width of the rounded-card */
+    font-size: 2rem;
+    font-weight: bold;
+}
 
+.price-box {
+    background-color: #1A237E;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    width: fit-content;
+    margin: 0 auto; /* centers the box */
+    padding-left: 1.5rem;
+    padding-right:1.5rem;
+}
 
+.vs-circle {
+    background-color: #4953BF;
+    border-radius: 50%; /* Makes it circular */
+    width: 6rem; /* Adjust size as needed */
+    height: 6rem; /* Adjust size as needed */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
+.button-container {
+    display: flex;
+    justify-content: space-evenly; /* Distributes buttons evenly across the horizontal line */
+}
 
+.game-button {
+    background-color: #1A237E; /* Use your preferred color */
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.game-button:hover {
+    background-color: #0D153B; /* Darker shade for hover effect, adjust as needed */
+}
 
 /* .product {
     width: 100%;
