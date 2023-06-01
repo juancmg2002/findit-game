@@ -11,57 +11,39 @@
 </head>
 
 <body>
-    <!-- <div id="loading-container" >
-         <div id="loading-text">Cargando...</div>
-       <img id="loading-rabbit" src="static/conejo_compra.png">
-    
-    </div> -->
-    
-        <div class="game-container">
-            <!-- <div id="score-message">
-        <p>Bien! Has acertado!</p>
-        <img id="rabbit" src="static/conejo_normal.png">
-            </div> -->
-
-            
-             <!-- <h1>HigherLower Findit</h1> -->
-            <!-- <div id="scoreboard" style="position: absolute; top: 10px; right: 10px; font-size: 24px; color: #32CD32;">Score: 0</div> -->
-            
-            <div class="half-screen">
-                <div class="product-image-container" src="https://www.masmusculo.com/100941/monster-energy.jpg">
-                    <img id="image1" class="product-image" src="image1.jpg">
+    <div class="game-container">
+        <div class="half-screen">
+            <div class="rounded-card">
+                <div class="product-image-container" >
+                    <img id="image1" class="product-image" src="img/loading_icon.gif">
                 </div>
                 <div class="product-text">
-                    <p id="name1">Product 1</p>
-                    <p id="price1">$100</p>
+                    <p id="name1"></p>
+                    <p id="price1" class="price-box">$100</p>
                 </div>
             </div>
-
-            <div class="half-screen">
-                <div class="product-image-container">
-
-                    <img id="image2" class="product-image" src="https://www.masmusculo.com/100941/monster-energy.jpg">
-
-      
-                    </div>
-                    <div class="product-text">
-                        <p id="name2">Product 1</p>
-                        <p id="price2">$100</p>
-                </div>
-
-        
-            </div>
-
-
-    
-
-    
-            <!-- <div class="buttons">
-                <button id="higher" onclick="guessHigher()">Higher</button>
-                <button id="lower" onclick="guessLower()">Lower</button>
-            </div>
-            <div id="result"></div> -->
         </div>
+        <div class="vs-circle">VS</div>
+
+        <div class="half-screen">
+            <div class="rounded-card">
+                <div class="product-image-container" >
+                    <img id="image2" class="product-image" src="img/loading_icon.gif">
+                </div>
+                <div class="product-text">
+                    <p id="name2"></p>
+                </div>
+                <div class="button-container">
+                    <button class="game-button" onclick="guessLower()" id="lower-button"><span class="triangle-down"></span><p>Lower</p></button>
+                    <span class="separator"><p class="o-letter">o</p></span>
+                    <button class="game-button" onclick="guessHigher()" id="higher-button"><span class="triangle-up"></span><p>Higher</p></button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    
     </body>
     
     

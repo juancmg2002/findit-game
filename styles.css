@@ -72,8 +72,8 @@ body, html, .game-container {
 .vs-circle {
     background-color: #4953BF;
     border-radius: 50%; /* Makes it circular */
-    width: 6rem; /* Adjust size as needed */
-    height: 6rem; /* Adjust size as needed */
+    width: 5rem; /* Adjust size as needed */
+    height: 5rem; /* Adjust size as needed */
     color: white;
     display: flex;
     justify-content: center;
@@ -101,16 +101,53 @@ body, html, .game-container {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: flex; /* To align the icon and the text */
+    align-items: center; /* To vertically center the icon and the text */
 }
 
-.game-button:hover {
+.game-button:not(.correct):not(.incorrect):hover {
     background-color: #0D153B; /* Darker shade for hover effect, adjust as needed */
 }
 
-/* .product {
-    width: 100%;
-    height: 100%;
-} */
+
+.triangle-up {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid white;
+    margin-right: 5px; /* To add space between the icon and the text */
+}
+
+.triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+    margin-right: 5px; /* To add space between the icon and the text */
+}
+
+.o-letter{
+    font-size: 1rem;
+    font-weight: bold;
+}
+.separator {
+    margin: 0 2rem;
+    color: #888;
+    font-weight: bold;
+}
+.correct {
+    background-color: green;
+    transition: background-color 1s ease;
+}
+
+.incorrect {
+    background-color: red;
+    transition: background-color 1s ease;
+}
+
+
 
 /* .game-container {
     overflow: auto;

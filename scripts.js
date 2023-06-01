@@ -27,6 +27,7 @@ function fetchProduct(number) {
 
 
 async function nextRound() {
+    
 //  animateLoadingRabbit();
     if (!product2) {
         // Fetch two random products
@@ -40,25 +41,35 @@ async function nextRound() {
         product2 = products[0]; // Take the first product from the array
     }
     // Display the products to the user
-    setTimeout(() => {
-        hideLoadingContainer(); // hide the loading rabbit
-        displayProducts();
-    }, 3000);
+    // setTimeout(() => {
+    //     hideLoadingContainer(); // hide the loading rabbit
+    //     displayProducts();
+    // }, 3000);
+    document.getElementById("image2").src = "img/loading_icon.gif"
     displayProducts();
 }
 
 function displayProducts() {
     if (product1 && product2) { // Check if product1 and product2 are not undefined
-        document.getElementById('image1').src = product1.image;
+        var img1 = new Image();
+        img1.onload = function() {
+            document.getElementById('image1').src = img1.src;
+        };
+        img1.src = product1.image;
+
         document.getElementById('name1').textContent = product1.name;
-        document.getElementById('price1').textContent = '$' + product1.price.toFixed(2);
-        document.getElementById('image2').src = product2.image;
+        document.getElementById('price1').textContent = '$' + product1.price;
+
+        var img2 = new Image();
+        img2.onload = function() {
+            document.getElementById('image2').src = img2.src;
+        };
+        img2.src = product2.image;
+
         document.getElementById('name2').textContent = product2.name;
-        setTimeout(2000)
-
-
     }
 }
+
 
 let score = 0;
 
@@ -76,30 +87,82 @@ function showScoreMessage() {
     }, 1000); // Hide the message after 1 second
 }
 function guessHigher() {
-    if (product1.price < product2.price) {
-        document.getElementById('result').textContent = 'Correct! The price of ' + product2.name + ' is $' + product2.price.toFixed(2);
-        score++;
-        showScoreMessage();
+    let correct = product1.price < product2.price;
+    var higherButton = document.getElementById('higher-button');
+    var higherButtonText = higherButton.querySelector('p');
+    
+    var lowerButton = document.getElementById('lower-button');
+    var oLetter = document.querySelector('.o-letter');
+
+    if (correct) {
+        higherButton.classList.remove('incorrect');
+        higherButton.classList.add('correct');
+        // showScoreMessage();
     } else {
-        document.getElementById('result').textContent = 'You missed! The price of ' + product2.name + ' is $' + product2.price.toFixed(2);
-        score = 0;
+        higherButton.classList.remove('correct');
+        higherButton.classList.add('incorrect');
+        // score = 0;
     }
-    updateScoreboard();
-    nextRound();
+
+    setTimeout(function() {
+        higherButton.classList.remove('correct');
+        higherButton.classList.remove('incorrect');
+
+        higherButtonText.textContent = product2.price+'$';
+        // Hide lower button and "o" text
+        // lowerButton.style.display = 'none';
+        // oLetter.style.display = 'none';
+
+        // Change the higher button text to product price
+        // higherButton.textContent = '$' + product2.price.toFixed(2);
+    }, 2000); // Change delay as needed
+
+    setTimeout(function() {
+        // Show lower button and "o" text
+        // lowerButton.style.display = 'inline';
+        // oLetter.style.display = 'inline';
+        higherButtonText.textContent = 'Higher';
+
+        // // Change the higher button text back to "Higher"
+        // higherButton.textContent = 'Higher';
+
+        // updateScoreboard();
+        nextRound();
+    }, 4000); // Change delay as needed
 }
 
+
+
 function guessLower() {
-    if (product1.price > product2.price) {
-        document.getElementById('result').textContent = 'Correct! The price of ' + product2.name + ' is $' + product2.price.toFixed(2);
-        score++;
-        showScoreMessage();
+    let correct = product1.price > product2.price;
+    var lowerButton = document.getElementById('lower-button');
+    var lowerButtonText = lowerButton.querySelector('p');
+
+    var higherButton = document.getElementById('higher-button');
+    var oLetter = document.querySelector('.o-letter');
+
+    if (correct) {
+        lowerButton.classList.remove('incorrect');
+        lowerButton.classList.add('correct');
     } else {
-        document.getElementById('result').textContent = 'You missed! The price of' + product2.name + ' is $' + product2.price.toFixed(2);
-        score = 0;
+        lowerButton.classList.remove('correct');
+        lowerButton.classList.add('incorrect');
     }
-    updateScoreboard();
-    nextRound();
+
+    setTimeout(function() {
+        lowerButton.classList.remove('correct');
+        lowerButton.classList.remove('incorrect');
+
+        lowerButtonText.textContent = product2.price+'$';
+    }, 2000); 
+
+    setTimeout(function() {
+        lowerButtonText.textContent = 'Lower';
+
+        nextRound();
+    }, 4000); 
 }
+
 
 nextRound();
 
