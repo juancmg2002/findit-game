@@ -73,18 +73,18 @@ body, html, .game-container {
 .vs-circle {
     background-color: #4953BF;
     border-radius: 50%; /* Makes it circular */
-    width: 5rem; /* Adjust size as needed */
-    height: 5rem; /* Adjust size as needed */
+    width: 7rem; /* Adjust size as needed */
+    height: 7rem; /* Adjust size as needed */
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
 }
 
 .button-container {
@@ -114,19 +114,19 @@ body, html, .game-container {
 .triangle-up {
     width: 0;
     height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid white;
-    margin-right: 5px; /* To add space between the icon and the text */
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    border-bottom: 1rem solid white;
+    margin-right: 1rem; /* To add space between the icon and the text */
 }
 
 .triangle-down {
     width: 0;
     height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid white;
-    margin-right: 5px; /* To add space between the icon and the text */
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    border-top: 1rem solid white;
+    margin-right: 1rem; /* To add space between the icon and the text */
 }
 
 .o-letter{
@@ -148,7 +148,15 @@ body, html, .game-container {
     transition: background-color 1s ease;
 }
 
+.score-text {
+    color:white;
+}
 
+.score-container{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
 
 /* .game-container {
     overflow: auto;

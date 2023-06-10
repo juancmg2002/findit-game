@@ -1,3 +1,11 @@
+// Global variables
+var score = 0;
+var highscore = 0;
+
+
+
+
+
 function showLoadingContainer() {
     const container = document.getElementById('loading-container');
     container.style.display = 'flex';
@@ -25,9 +33,38 @@ function fetchProduct(number) {
         });
 }
 
+function fetchHighScore() {
+    return fetch(`http://api.finditapp.es:5000/getHighScore`)
+        .then(response => response.text())
+        .then(score => {
+            console.log('API response:', score);
+            return Number(score);
+        });
+}
+
+function setHighScore(){
+    fetch(`http://api.finditapp.es:5000/setHighScore?highscore=${score}`)
+        .then(response => response.text())
+        .then(score => {
+            console.log('API response:', score);
+            return Number(score);
+        });
+}
+
 
 async function nextRound() {
+
+     // Update highscore
+     highscore = await fetchHighScore();
+     // Show score and higscore
+     document.getElementById("score").innerText = "Score: "+score;
+      document.getElementById("highscore").innerText = "Highscore: "+highscore;
+  
+      if (Number(score) > Number(highscore)) {
+          setHighScore(highscore);
+      }
     
+
 //  animateLoadingRabbit();
     if (!product2) {
         // Fetch two random products
@@ -47,6 +84,8 @@ async function nextRound() {
     // }, 3000);
     document.getElementById("image2").src = "img/loading_icon.gif"
     displayProducts();
+
+
 }
 
 function displayProducts() {
@@ -71,7 +110,6 @@ function displayProducts() {
 }
 
 
-let score = 0;
 
 function updateScoreboard() {
     document.getElementById('scoreboard').textContent = 'Score: ' + score;
@@ -98,6 +136,10 @@ function guessHigher() {
         higherButton.classList.remove('incorrect');
         higherButton.classList.add('correct');
         // showScoreMessage();
+        score++;
+        if (Number(score) > Number(highscore)) {
+            highscore = score;
+        }
     } else {
         higherButton.classList.remove('correct');
         higherButton.classList.add('incorrect');
@@ -144,6 +186,11 @@ function guessLower() {
     if (correct) {
         lowerButton.classList.remove('incorrect');
         lowerButton.classList.add('correct');
+        score++;
+        if (Number(score) > Number(highscore)) {
+            highscore = score;
+        }
+
     } else {
         lowerButton.classList.remove('correct');
         lowerButton.classList.add('incorrect');
