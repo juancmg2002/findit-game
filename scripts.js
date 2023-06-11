@@ -2,6 +2,8 @@
 var score = 0;
 var highscore = 0;
 
+const BASE_URL = 'http://api.finditapp.es:5000';
+
 
 
 
@@ -24,7 +26,7 @@ let product1, product2;
 //     setTimeout(() => rabbit.style.left = '100vw', 0); /* animate to the right side of the screen */
 // }
 function fetchProduct(number) {
-    return fetch(`http://api.finditapp.es:5000/pickRandomProduct?number=${number}`)
+    return fetch(`${BASE_URL}/pickRandomProduct?number=${number}`)
         .then(response => response.json())
         .then(data => {
             console.log('API response:', data);
@@ -34,7 +36,7 @@ function fetchProduct(number) {
 }
 
 function fetchHighScore() {
-    return fetch(`http://api.finditapp.es:5000/getHighScore`)
+    return fetch(`${BASE_URL}/getHighScore`)
         .then(response => response.text())
         .then(score => {
             console.log('API response:', score);
@@ -43,7 +45,7 @@ function fetchHighScore() {
 }
 
 function setHighScore(){
-    fetch(`http://api.finditapp.es:5000/setHighScore?highscore=${score}`)
+    fetch(`${BASE_URL}/setHighScore?highscore=${score}`)
         .then(response => response.text())
         .then(score => {
             console.log('API response:', score);
