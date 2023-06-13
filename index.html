@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+     <meta charset="UTF-8">
     <title>Higher Lower Game</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 
@@ -11,6 +12,23 @@
 </head>
 
 <body>
+<div id="username-modal" class="modal">
+    <div class="modal-content">
+        <img id="logo" src="img/logo.png" alt="Game Logo">
+        <h2>Bienvenido a HiguerLower Findit</h2>
+        <p>Por favor, introduce tu nombre:</p>
+        <input type="text" id="username-input" required>
+          <h3 class="instructions-heading">Instrucciones:</h3>
+        <ul class="instructions-list">
+            <li class="instruction-item">El objetivo del juego es adivinar si el producto de abajo es más o menos caro que el de arriba.</li>
+            <li class="instruction-item">Para ello, deberás clicar el botón Higher si piensas que es más caro, o Lower si piensas que es más barato.</li>
+            <li class="instruction-item">Cuando falles, se reiniciará tu puntuación.</li>
+            <li class="instruction-item">Buena suerte!</li>
+        </ul>
+
+        <button onclick="saveUsername()">Empieza a jugar</button>
+    </div>
+</div>
     <div class="game-container">
         <div class="half-screen">
             <div class="score-container">
@@ -23,13 +41,16 @@
                 </div>
                 <div class="product-text">
                     <p id="name1"></p>
-                    <p id="price1" class="price-box">$100</p>
+                    <p id="price1" class="price-box">100€</p>
                 </div>
             </div>
         </div>
         <div class="vs-circle">VS</div>
 
         <div class="half-screen">
+            <div class="rounded-card second">
+    <!-- The rest of your code here -->
+
             <div class="rounded-card">
                 <div class="product-image-container" >
                     <img id="image2" class="product-image" src="img/loading_icon.gif">
@@ -44,6 +65,7 @@
                 </div>
                 
             </div>
+                </div>
         </div>
     </div>
     

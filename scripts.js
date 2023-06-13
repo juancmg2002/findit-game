@@ -6,7 +6,18 @@ const BASE_URL = 'http://api.finditapp.es:5000';
 
 
 
+window.onload = function() {
+    document.getElementById('username-modal').style.display = "block";
+}
 
+function saveUsername() {
+    const username = document.getElementById('username-input').value;
+    if(username === '') {
+        alert("Please enter your username!");
+        return;
+    }
+    document.getElementById('username-modal').style.display = "none";
+}
 
 function showLoadingContainer() {
     const container = document.getElementById('loading-container');
@@ -99,7 +110,7 @@ function displayProducts() {
         img1.src = product1.image;
 
         document.getElementById('name1').textContent = product1.name;
-        document.getElementById('price1').textContent = '$' + product1.price;
+        document.getElementById('price1').textContent = product1.price.toFixed(2) + '€';
 
         var img2 = new Image();
         img2.onload = function() {
@@ -108,6 +119,7 @@ function displayProducts() {
         img2.src = product2.image;
 
         document.getElementById('name2').textContent = product2.name;
+        document.getElementById('price2').textContent = product2.price.toFixed(2) + '€';
     }
 }
 

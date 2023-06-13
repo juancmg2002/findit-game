@@ -1,14 +1,4 @@
-/* body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(to right, #673ab7, #512da8, #4527a0, #311b92, #1a237e);
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    color: white;
-    max-height: 100%;
-} */
+
 
 body, html, .game-container {
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -38,7 +28,90 @@ body, html, .game-container {
     height: 100%;
     object-fit: contain;
 }
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,102,0.8); /* Blue overlay with 80% opacity */
+}
 
+.modal-content {
+    position: relative;
+    background-color: #e6e6ff; /* Light blue background */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%; /* Change width to make it bigger */
+    max-width: 1000px; /* Increase the maximum width */
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add some shadow for a smoother look */
+    transition: 0.3s; /* Add a transition effect */
+    font-family: 'Arial', sans-serif; /* Choose your font */
+}
+.modal-content .instructions-heading {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 2.5em; /* adjust the size of the instruction title as needed */
+    color: #3F51B5; /* adjust the color of the instruction title as needed */
+}
+
+.modal-content .instructions-list {
+    text-align: left;
+    margin: 10px 20px;
+    list-style: none;  /* creates a numbered list with leading zeros (01, 02, etc.) */
+}
+
+.modal-content .instructions-list .instruction-item {
+    margin-bottom: 10px;
+    color: #333; /* adjust the color of the instruction text as needed */
+    font-size: 1.8em; /* adjust the size of the instruction text as needed */
+    line-height: 1.5; /* adjust the line height as needed for better readability */
+}
+.modal-content h2, .modal-content p {
+    font-size: 2.5em;
+    color: #1A237E; /* Dark blue color for text */
+    margin: 0 0 15px 0; /* Add some margin to the bottom */
+    line-height: 1.4; /* Space out the lines of text a bit */
+     text-align: left;
+      padding: 20px;
+}
+.modal-content #logo {
+    position: absolute; /* Allows positioning in relation to the nearest relative ancestor */
+    top: 10px; /* Adjust these values to position the logo */
+    right: 10px;
+    width: 150px; /* Adjust the size of the logo */
+    height: auto; /* Maintains aspect ratio */
+}
+.modal-content input[type=text] {
+    width: 95%; /* Full width */
+    padding: 15px; /* Add some padding */
+    margin: 5px 0 22px 0; /* Add some margin */
+    border: none; /* Remove the border */
+    background: #f1f1f1; /* Set a light grey background */
+    font-size: 1.5em; /* Increase font size */
+}
+
+.modal-content button {
+    background-color: #4B0082; /* Purple background */
+    color: white; /* White text */
+    padding: 15px 20px; /* Add some padding */
+    border: none; /* Remove the border */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    width: 100%; /* Full width */
+    opacity: 0.9; /* Add some transparency */
+    font-size: 1.5em; /* Increase font size */
+}
+
+.modal-content button:hover {
+    opacity: 1; /* Increase opacity on hover */
+}
 .rounded-card {
     background-color: white;
     border-radius: 15px; /* adjust this value for more or less rounding */
@@ -51,6 +124,9 @@ body, html, .game-container {
     padding: 20px; /* adjust padding as needed */
     box-sizing: border-box; /* ensures padding doesn't affect total width/height */
 }
+.rounded-card.second {
+    margin-top: 60px; /* adjust this value as per your requirement */
+}
 .product-text {
     width: 100%; /* makes text fill the width of the rounded-card */
     font-size: 3rem;
@@ -58,23 +134,24 @@ body, html, .game-container {
 }
 
 .price-box {
-    background-color: #1A237E;
+    background-color: #3399FF;
     color: white;
     padding: 10px;
     border-radius: 10px;
     font-weight: bold;
     width: fit-content;
-    margin: 0 auto; /* centers the box */
+    margin: 0px auto 20px auto; /* Bottom margin set to 20px */
     font-size:4rem;
+    border: 10px solid purple;
     padding-left: 1.5rem;
     padding-right:1.5rem;
 }
 
 .vs-circle {
-    background-color: #4953BF;
-    border-radius: 50%; /* Makes it circular */
-    width: 7rem; /* Adjust size as needed */
-    height: 7rem; /* Adjust size as needed */
+    background-color: #5574F7;
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
     color: white;
     display: flex;
     justify-content: center;
@@ -82,10 +159,14 @@ body, html, .game-container {
     font-size: 3rem;
     font-weight: bold;
     position: absolute;
-    top: 50%;
+    top: 53%;
     left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, -50%);
+    border: 0.5rem solid purple; /* Adding a border (stroke) */
+    transition: all 0.5s ease;
+    box-shadow: 0 0 1rem purple; /* Add a purple shadow for an extra glow */
 }
+
 
 .button-container {
     display: flex;
@@ -93,9 +174,10 @@ body, html, .game-container {
 }
 
 .game-button {
-    background-color: #1A237E; /* Use your preferred color */
+    background-color: #3399FF; /* Use your preferred color */
     color: white;
     border: none;
+    border: 10px solid purple;
     border-radius: 15px;
     padding: 10px 20px;
     font-size: 3rem;
@@ -149,152 +231,33 @@ body, html, .game-container {
 }
 
 .score-text {
-    color:white;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 2.0em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle text shadow for depth */
+    transition: color 0.3s ease; /* Smooth transition for any color change */
 }
 
-.score-container{
+.score-text:hover {
+    color: #ddd; /* Lighten the text color on hover */
+}
+
+.score-container {
     display: flex;
     justify-content: space-between;
     width: 90%;
+    padding: 20px; /* Add some padding for a cleaner look */
+    background: rgba(204, 0, 204, 0.5) url('img/basket_icon.png') center center no-repeat;
+    background-size: auto 70%;  /* Semi-transparent background */
+    background-position: 50% 80% ;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+    transition: background 0.3s ease; /* Smooth transition for any background change */
 }
 
-/* .game-container {
-    overflow: auto;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 400px;
-    backdrop-filter: blur(10px);
-} */
-
-/* h1 {
-    text-align: center;
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 20px;
+.score-container:hover {
+    background: rgba(0, 0, 0, 0.7); /* Darken the background on hover */
 }
-
-#scoreboard {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5em;
-    color: #32CD32;
-    font-weight: bold;
-} */
-
-/* .product {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 10px;
-    text-align: center;
-    transition: background-color 0.5s;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.product img {
-    width: 85%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 20px;
-    max-height: 300px;
-} */
-
-/* .product p {
-    margin: 10px 0;
-    font-size: 1.2em;
-} */
-
-/* #price1 {
-    font-size: 1.5em;
-    font-family: 'Open Sans', sans-serif;
-    color: #32CD32;
-    text-shadow: 2px 2px 4px #000000;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 50px;
-    background-color: #007BFF;
-    color: white;
-    font-size: 1.2em;
-    transition: background-color 0.5s, transform 0.3s;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-#result {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-@media (min-width: 600px) {
-    .buttons {
-        flex-direction: row;
-    }
-    button {
-        margin-bottom: 0;
-    }
-}
-#score-message {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 187, 45, 0.7); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 3em;
-    color: #ffffff;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1s;
-    font-family: 'Open Sans', sans-serif;
-    text-align: center;
-}
-
-#score-message p {
-    margin: 0;
-    padding: 0;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-#rabbit {
-    width: auto;
-    height: 650px;
-    margin-top: 20px;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    transition: transform 1s;
-}
-
-#score-message.show #rabbit {
-    transform: scale(1.1);
-} */
 #loading-rabbit {
     position: absolute;
     top: 50%; /* center vertically */
