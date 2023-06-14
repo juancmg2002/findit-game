@@ -41,6 +41,32 @@ body, html, .game-container {
     background-color: rgba(0,0,102,0.8); /* Blue overlay with 80% opacity */
 }
 
+/* This media query will apply when the screen width is 600px or less */
+.modal-content .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.modal-content #logo {
+    width: 140px;
+    height: auto;
+}
+
+.modal-content .modal-titles h2, .modal-content .modal-titles p {
+    margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .modal-content .modal-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .modal-content #logo {
+        width: 80px;
+    }
+}
 .modal-content {
     position: relative;
     background-color: #e6e6ff; /* Light blue background */
@@ -82,13 +108,7 @@ body, html, .game-container {
      text-align: left;
       padding: 20px;
 }
-.modal-content #logo {
-    position: absolute; /* Allows positioning in relation to the nearest relative ancestor */
-    top: 10px; /* Adjust these values to position the logo */
-    right: 10px;
-    width: 150px; /* Adjust the size of the logo */
-    height: auto; /* Maintains aspect ratio */
-}
+
 .modal-content input[type=text] {
     width: 95%; /* Full width */
     padding: 15px; /* Add some padding */
