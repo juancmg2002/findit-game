@@ -40,7 +40,6 @@ function fetchProduct(number) {
     return fetch(`${BASE_URL}/pickRandomProduct?number=${number}`)
         .then(response => response.json())
         .then(data => {
-            console.log('API response:', data);
             // Returns 2 or 1 product(s) depending on the response
             return data.map(productArray => productArray[0]);
         });
@@ -48,19 +47,20 @@ function fetchProduct(number) {
 
 function fetchHighScore() {
     return fetch(`${BASE_URL}/getHighScore`)
-        .then(response => response.text())
-        .then(score => {
-            console.log('API response:', score);
-            return Number(score);
+        .then(response => response.json())
+        .then(data => {
+            const highScore = data.highscore || 0;
+            const maxScorer = data.scorer || 'unknown';
+            console.log()
+            return { highScore, maxScorer };
         });
 }
-
 function setHighScore(){
-    fetch(`${BASE_URL}/setHighScore?highscore=${score}`)
+    const username = document.getElementById('username-input').value;
+    fetch(`${BASE_URL}/setHighScore?highscore=${score}&username=${username}`)
         .then(response => response.text())
-        .then(score => {
-            console.log('API response:', score);
-            return Number(score);
+        .then(response => {
+            return response;
         });
 }
 
@@ -68,14 +68,15 @@ function setHighScore(){
 async function nextRound() {
 
      // Update highscore
-     highscore = await fetchHighScore();
-     // Show score and higscore
+      const { highScore, maxScorer } = await fetchHighScore();
+     // Show score, higscore and maxScorer
      document.getElementById("score").innerText = "Score: "+score;
-      document.getElementById("highscore").innerText = "Highscore: "+highscore;
-  
-      if (Number(score) > Number(highscore)) {
-          setHighScore(highscore);
-      }
+     document.getElementById("highscore").innerText = "Highscore: "+highScore + " by " + maxScorer;
+
+     if (Number(score) > Number(highScore)) {
+         setHighScore();
+     }
+
     
 
 //  animateLoadingRabbit();
@@ -138,58 +139,44 @@ function showScoreMessage() {
         scoreMessage.classList.remove('show');
     }, 1000); // Hide the message after 1 second
 }
-function guessHigher() {
+async function guessHigher() {
     let correct = product1.price < product2.price;
     var higherButton = document.getElementById('higher-button');
     var higherButtonText = higherButton.querySelector('p');
-    
+
     var lowerButton = document.getElementById('lower-button');
     var oLetter = document.querySelector('.o-letter');
 
     if (correct) {
         higherButton.classList.remove('incorrect');
         higherButton.classList.add('correct');
-        // showScoreMessage();
         score++;
-        if (Number(score) > Number(highscore)) {
-            highscore = score;
-        }
     } else {
         higherButton.classList.remove('correct');
         higherButton.classList.add('incorrect');
-        // score = 0;
+        if (Number(score) > Number(highscore)) {
+            highscore = score;
+            setHighScore();
+        }
+        score = 0;
     }
 
     setTimeout(function() {
         higherButton.classList.remove('correct');
         higherButton.classList.remove('incorrect');
 
-        higherButtonText.textContent = product2.price+'$';
-        // Hide lower button and "o" text
-        // lowerButton.style.display = 'none';
-        // oLetter.style.display = 'none';
-
-        // Change the higher button text to product price
-        // higherButton.textContent = '$' + product2.price.toFixed(2);
-    }, 2000); // Change delay as needed
+        higherButtonText.textContent = product2.price.toFixed(2)+'€';
+    }, 2000);
 
     setTimeout(function() {
-        // Show lower button and "o" text
-        // lowerButton.style.display = 'inline';
-        // oLetter.style.display = 'inline';
         higherButtonText.textContent = 'Higher';
 
-        // // Change the higher button text back to "Higher"
-        // higherButton.textContent = 'Higher';
-
-        // updateScoreboard();
         nextRound();
-    }, 4000); // Change delay as needed
+    }, 4000);
 }
 
 
-
-function guessLower() {
+async function guessLower() {
     let correct = product1.price > product2.price;
     var lowerButton = document.getElementById('lower-button');
     var lowerButtonText = lowerButton.querySelector('p');
@@ -201,13 +188,14 @@ function guessLower() {
         lowerButton.classList.remove('incorrect');
         lowerButton.classList.add('correct');
         score++;
-        if (Number(score) > Number(highscore)) {
-            highscore = score;
-        }
-
     } else {
         lowerButton.classList.remove('correct');
         lowerButton.classList.add('incorrect');
+        if (Number(score) > Number(highscore)) {
+            highscore = score;
+            setHighScore();
+        }
+        score = 0;
     }
 
     setTimeout(function() {
@@ -215,13 +203,13 @@ function guessLower() {
         lowerButton.classList.remove('incorrect');
 
         lowerButtonText.textContent = product2.price+'$';
-    }, 2000); 
+    }, 2000);
 
     setTimeout(function() {
         lowerButtonText.textContent = 'Lower';
 
         nextRound();
-    }, 4000); 
+    }, 4000);
 }
 
 
